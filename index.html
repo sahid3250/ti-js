@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Emergency Service</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background: white;
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      
+      padding: 12px 20px;
+    }
+    .navbar img{
+      width: 30px;
+      height: 30px;
+      font-weight: bolder;
+    }
+    .navbar .logo{
+      display: flex;
+      color: green;
+      align-items: center;
+    }
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar-right .color img{
+      width: 25px;
+      height: 25px;
+    }
+    .navbar-right .copy {
+      background-color: green;
+    }
+    .navbar-right span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .banner img{
+      height: 55px;
+      width: 55px;
+    }
+    .banner {
+      text-align: center;
+      padding: 20px;
+      background: rgb(13, 87, 13);
+      color: white;
+    }
+    /* Layout wrapper */
+    .content {
+      display: flex;
+      margin: 20px;
+      gap: 20px;
+    }
+    /* Left: cards */
+    .cards {
+      flex: 3;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      text-align: center;
+      position: relative;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+    }
+    .card p {
+      margin: 5px 0;
+    }
+    .card img{
+      width: 30px;
+      height: 30px;
+    }
+    .heart {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 18px;
+      color: gray;
+    }
+    .heart.active {
+      color: red;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-call {
+      width: 110px;
+      background: green;
+      color: white;
+    }
+    .btn-copy {
+      width: 110px;
+      background: #ddd;
+    }
+    /* Right: Call history */
+    .history {
+      flex: 1.2;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      height: fit-content;
+    }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .history-list {
+      margin-top: 10px;
+      list-style: none;
+      padding: 0;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .history-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="">
+      <p>Emergency <br>Service</p>
+    </div>
+    <div class="navbar-right">
+      <div class="color">
+        <button><span><img src="heart.png" alt=""> <span id="heartCount">0</span></span></button>
+      <button><span><img src="coin.png" alt=""> <span id="coinCount">100</span></span></button>
+      </div>
+       <div class="Copy"><button>0 Copy</button></div>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <img src="logo-dark.png" alt="">
+    <h1>জরুরি সেবা ডায়রেক্টরি</h1>
+    <p>Government Emergency Services at Your Fingertip – A Project by 
+       Government of the People’s Republic of Bangladesh</p>
+  </div>
+
+  <!-- Content wrapper -->
+  <div class="content">
+    <!-- Left: Cards -->
+    <div class="cards">
+      <div class="card" data-name="জাতীয় জরুরি সেবা" data-number="999">
+        <div class="heart">♥</div>
+        <img src="emergency.png" alt="">
+        <h3>জাতীয় জরুরি সেবা</h3>
+        <p>National Emergency Service</p>
+        <h2>999</h2>
+        <p>সার্বজনীন</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="পুলিশ" data-number="999">
+        <div class="heart">♥</div>
+        <img src="police.png" alt="">
+        <h3>পুলিশ</h3>
+        <p>Police</p>
+        <h2>999</h2>
+        <p>পুলিশ</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="ফায়ার সার্ভিস" data-number="999">
+        <div class="heart">♥</div>
+        <img src="fire-service.png" alt="">
+        <h3>ফায়ার সার্ভিস</h3>
+        <p>Fire Service</p>
+        <h2>999</h2>
+        <p>ফায়ার</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="অ্যাম্বুলেন্স" data-number="017">
+        <div class="heart">♥</div>
+        <img src="ambulance.png" alt="">
+        <h3>অ্যাম্বুলেন্স</h3>
+        <p>Ambulance </p>
+        <h2>1994-999999</h2>
+        <p>স্বাস্থ্য</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="নারী ও শিশু সহায়তা" data-number="018">
+        <div class="heart">♥</div>
+        <img src="emergency.png" alt="">
+        <h3>নারী ও শিশু সহায়তা</h3>
+        <p>Women & Child Helpline</p>
+        <h2>109</h2>
+        <p>সহায়তা</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="দুদক" data-number="019">
+        <div class="heart">♥</div>
+        <img src="emergency.png" alt="">
+        <h3>দুদক</h3>
+        <p>Anti-Corruption</p>
+        <h2>106</h2>
+        <p>সরকারি</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="বিদ্যুৎ বিভ্রাট " data-number="020">
+        <div class="heart">♥</div>
+        <img src="emergency.png" alt="">
+        <h3>বিদ্যুৎ বিভ্রাট</h3>
+        <p>Electricity Outage</p>
+        <h2>16216</h2>
+        <p>বিদ্যুৎ</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="ব্র্যাক" data-number="021">
+        <div class="heart">♥</div>
+        <img src="brac.png" alt="">
+        <h3>ব্র্যাক</h3>
+        <p>Brac</p>
+        <h2>16445</h2>
+        <p>এনজিও</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+
+      <div class="card" data-name="বাংলাদেশ রেলওয়ে" data-number="109">
+        <div class="heart">♥</div>
+        <img src="Bangladesh-Railway.png" alt="">
+        <h3>বাংলাদেশ রেলওয়ে</h3>
+        <p>Bangladesh Railway</p>
+        <h2>163</h2>
+        <p>পরিবহন</p>
+        <button class="btn-copy">Copy</button>
+        <button class="btn-call">Call</button>
+      </div>
+    </div>
+
+    <!-- Right: Call History -->
+    <div class="history">
+      <div class="history-header">
+        <h3>Call History</h3>
+        <button id="clearHistory">Clear</button>
+      </div>
+      <ul class="history-list" id="historyList">
+        <!-- dynamically filled -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    var heartCount = document.getElementById("heartCount");
+    var coinCount = document.getElementById("coinCount");
+    var copyCount = document.getElementById("copyCount");
+    var historyList = document.getElementById("historyList");
+
+    var hearts = document.querySelectorAll(".heart");
+    hearts.forEach(function(heart){
+      heart.addEventListener("click", function(){
+        heart.classList.toggle("active");
+        heartCount.textContent = parseInt(heartCount.textContent) + 1;
+      });
+    });
+
+    var copyButtons = document.querySelectorAll(".btn-copy");
+    copyButtons.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var card = btn.closest(".card");
+        var number = card.getAttribute("data-number");
+
+        navigator.clipboard.writeText(number);
+        alert("Copied: " + number);
+        copyCount.textContent = parseInt(copyCount.textContent) + 1;
+      });
+    });
+
+    var callButtons = document.querySelectorAll(".btn-call");
+    callButtons.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var card = btn.closest(".card");
+        var name = card.getAttribute("data-name");
+        var number = card.getAttribute("data-number");
+
+        var currentCoins = parseInt(coinCount.textContent);
+        if(currentCoins < 20){
+          alert("Not enough coins to make a call!");
+          return;
+        }
+
+        coinCount.textContent = currentCoins - 20;
+        alert("Calling " + name + " (" + number + ")");
+
+        var li = document.createElement("li");
+        var time = new Date().toLocaleTimeString();
+        li.textContent = name + " - " + number + " at " + time;
+        historyList.appendChild(li);
+      });
+    });
+
+    document.getElementById("clearHistory").addEventListener("click", function(){
+      historyList.innerHTML = "";
+    });
+  </script>
+</body>
+</html>
